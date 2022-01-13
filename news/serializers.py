@@ -1,3 +1,4 @@
+import re
 from rest_framework import serializers
 from news.models import News
 
@@ -9,6 +10,8 @@ class NewsSerializer(serializers.ModelSerializer):
   def validate_title(self, title):
       if len(title)<3:
         raise serializers.ValidationError("3글자 이상!!")
+      if not re.search(r"[ㄱ-힣]",title):
+        raise serializers.ValidationError("한글을 써주세요.")
       return title
 
 # # 비로그인 사용자용
