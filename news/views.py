@@ -11,11 +11,13 @@ class NewsViewSet(viewsets.ModelViewSet):
 
 
 def Article_list(request):
-    qs = Post.objects.alll()
+    qs = News.objects.alll()
     dta = [
         {"id":article.id, 
         "title":article.title, 
-        "content":article.content}
+        "content":article.content,
+        "photo": request.build_absolute_url(article.photo.url) if article.photo else None,
+        }
         for article in qs
     ]
     json_string = json.dumps(data)
