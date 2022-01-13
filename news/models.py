@@ -10,4 +10,5 @@ class TimestampedModel(models.Model):
 class News(TimestampedModel):
   title = models.CharField(max_length=20, db_index = True)
   content = models.TextField()
+  photo = models.ImageField(blank = True)
 
