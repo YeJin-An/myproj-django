@@ -1,3 +1,4 @@
+from nntplib import ArticleInfo
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 from news.models import News
@@ -5,6 +6,7 @@ from blog.serializers import PostSerializer ,NewsAdminSerializer
 
 import json
 from django.http import HttpRequest, HttpResponse
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
@@ -12,6 +14,9 @@ class NewsViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         return NewsAdminSerializer
         # 함수의 이름을 넣어주는 역활??
+    serializer_class = ArticleSerializer
+    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         qs = super().get_queryset()
