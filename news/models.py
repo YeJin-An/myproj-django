@@ -9,7 +9,7 @@ class TimestampedModel(models.Model):
         abstract = True
 
 class News(TimestampedModel):
-  title = models.CharField(max_length=20, db_index = True
+  title = models.CharField(max_length=20, db_index = True),
                             validators=[
                               MinLengthValidator(3, message),
                               RegexValidator(r"[ㄱ-힝]", message="한글을 입력해주세요.")

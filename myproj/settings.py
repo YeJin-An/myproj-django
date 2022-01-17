@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'rest_framework',
     'news',
+    'rest_framework_simplejwt',
 ]
 
 
@@ -136,3 +137,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # django-cors-headers
 # https://github.com/adamchainz/django-cors-headers
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentications.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
