@@ -1,0 +1,17 @@
+# myproj-django
+
+## `.env`예시
+
+```
+SECRET_KEY=SECRET_KEY
+DEBUG=False
+
+# ALLOWED_HOSTS = api.enrhd.com
+# CORS_ALLOWED_ORIGINS - www.enrhd.com
+
+ACCESS_TOKEN_LIFETIME_DAYS = 7
+ACCESS_TOKEN_LIFETIME_HOURS = 0
+ACCESS_TOKEN_LIFETIME_MINUTS = 0
+
+# DATABASE
+```
