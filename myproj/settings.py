@@ -136,6 +136,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 각 앱에 나눠 저장된 static 파일들을
+# 한 곳으로 모아서 저장할 디렉토리 경로
+# 배표 시에만 의미있는 설정
+# 한 곳으로 모으는 명령 : python manage.py collectstatic
+ATARIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -151,6 +156,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS",
                                 default=["http://localhost:3000"])
 
+ACCESS_TOKEN_LIFETIME_DAYS = env.int("ACCESS_TOKEN_LIFETIME",default=0)
+ACCESS_TOKEN_LIFETIME_HOURS = env.int("ACCESS_TOKEN_HOURS",default=0)
+ACCESS_TOKEN_LIFETIME_MINUTS = env.int("ACCESS_TOKEN_MINUTS",default=5)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -158,5 +166,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     # 디폴트 만료시간 : 5 분
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(
+        days=ACCESS_TOKEN_LIFETIME_DAYS,
+        hours = ACCESS_TOKEN_LIFETIME_HOURS,
+        minuts = ACCESS_TOKEN_LIFETIME_MINUTS,
+    ),
 }
